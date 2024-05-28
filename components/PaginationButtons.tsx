@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import { useGetPokemonsPaginatorQuery } from "../services/pokemon";
 import { useState } from "react";
 import { SafeAreaView, StyleSheet, StatusBar, ScrollView, Button, ActivityIndicator } from "react-native";
-import PokemonsList from "./PokemonList";
+import PokemonsList from "./PokemonInfo";
 
 const styles = StyleSheet.create({
   buttonsContainer: {

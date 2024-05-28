@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ExternalLink } from './ExternalLink';
 import { MonoText } from './StyledText';
@@ -8,6 +8,7 @@ import { Text, View } from './Themed';
 import Colors from '@/constants/Colors';
 import { Pokemon } from '@/constants/pokemon';
 import PokemonCard from './PokemonCard';
+import { Link } from 'expo-router';
 
 const baseUrl: string = 'https://pokeapi.co/api/v2/pokemon/'
 
@@ -15,7 +16,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Pokemon[]>([]);
 
-  const getMovies = async () => {
+  const getPokemon = async () => {
     try {
       const response = await fetch(baseUrl + '?limit=151&offset=0');
       const json = await response.json();
@@ -28,7 +29,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
   };
 
   useEffect(() => {
-    getMovies();
+    getPokemon();
   }, []);
 
   return (
@@ -39,7 +40,12 @@ export default function EditScreenInfo({ path }: { path: string }) {
         <FlatList
           data={data}
           renderItem={({item}) => (
-            <PokemonCard item={item} />
+            <Link 
+              href='app/pokemon'
+              onPress={() => console.log("hello")}>
+                <PokemonCard item={item} />
+              </Link>
+            
           )}
         />
       )}

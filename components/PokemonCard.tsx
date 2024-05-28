@@ -18,22 +18,25 @@ const PokemonCard = ({ item }: any) => {
 
   return (
       <View
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+        style={styles.item}>
         <Image source={{uri: imageURL}}
-               style={{width: 50, height: 50}} />
-
-        <Text style={styles.title}>{id} {item.name}</Text>
+               style={{width: 70, height: 70, paddingLeft: 3}} />
+        <Text style={styles.title}>#{id}: {item.name}</Text>
       </View>
   );
 };
 
 const styles = StyleSheet.create({
   item: {
+    display: 'flex',
+    flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 12,
     marginVertical: 8,
     marginHorizontal: 22,
     borderRadius: 16,
+    backgroundColor: '#EAEAEA',
+    borderWidth: 2
   },
   title: {
     fontSize: 28,
