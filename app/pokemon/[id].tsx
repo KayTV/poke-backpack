@@ -9,7 +9,7 @@ export default function PokemonScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Pokemon</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <PokemonsInfo path="app/pokemon.tsx" />
+      <PokemonsInfo path="app/pokemon/[id].tsx" />
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />

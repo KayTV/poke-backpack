@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ExternalLink } from './ExternalLink';
 import { MonoText } from './StyledText';
@@ -8,7 +8,7 @@ import { Text, View } from './Themed';
 import Colors from '@/constants/Colors';
 import { Pokemon } from '@/constants/pokemon';
 import PokemonCard from './PokemonCard';
-import { Link } from 'expo-router';
+import { Link, useNavigation } from 'expo-router';
 
 const baseUrl: string = 'https://pokeapi.co/api/v2/pokemon/'
 
@@ -40,12 +40,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
         <FlatList
           data={data}
           renderItem={({item}) => (
-            <Link 
-              href='app/pokemon'
-              onPress={() => console.log("hello")}>
-                <PokemonCard item={item} />
-              </Link>
-            
+            <PokemonCard item={item} /> 
           )}
         />
       )}

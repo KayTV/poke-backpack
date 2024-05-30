@@ -1,7 +1,10 @@
 import { StyleSheet, StatusBar, FlatList, View, Text } from "react-native";
 import PokemonCard from "./PokemonCard";
+import { useLocalSearchParams } from "expo-router";
 
-const PokemonsInfo = ({ item }: any) => {
+const PokemonsInfo = ({ path }: { path: string }) => {
+  const { id } = useLocalSearchParams();
+  console.log(id);
   return (
     <View>
       <Text>Hello</Text>

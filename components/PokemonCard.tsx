@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 
 import { getPokemonIdFromURL } from "./functions/commonCalls";
-import { useNavigation } from "@react-navigation/native";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Pokemon } from "@/constants/pokemon";
+import { Link, useNavigation } from "expo-router";
 
 
 
@@ -17,12 +17,16 @@ const PokemonCard = ({ item }: any) => {
   const imageURL = spriteUrl + id + '.png';
 
   return (
-      <View
-        style={styles.item}>
+    <Link 
+        style={styles.item}
+        href={{
+          pathname: "/pokemon/[id]",
+          params: { id: id }
+        }}>
         <Image source={{uri: imageURL}}
                style={{width: 70, height: 70, paddingLeft: 3}} />
         <Text style={styles.title}>#{id}: {item.name}</Text>
-      </View>
+    </Link>
   );
 };
 
