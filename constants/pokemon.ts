@@ -12,7 +12,7 @@ export interface  Pokemon {
   held_items:PokemonHeldItem[];
   location_area_encounters: string;
   moves: PokemonMove[];
-  sprites: PokemonSprites[];
+  sprites: PokemonSprites;
   species: PokemonSpecies[];
   stats: PokemonStat[];
   types: PokemonType[];
