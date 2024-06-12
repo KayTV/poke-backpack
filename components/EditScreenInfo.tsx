@@ -6,15 +6,22 @@ import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
 import Colors from '@/constants/Colors';
-import { Pokemon } from '@/constants/pokemon';
+import { Pokemon } from '@/models/pokemon';
 import PokemonCard from './PokemonCard';
 import { Link, useNavigation } from 'expo-router';
+import { Region } from '@/models/regions';
+import Regions from '@/constants/Regions';
+import RegionDisplay from './RegionDisplay';
 
 const baseUrl: string = 'https://pokeapi.co/api/v2/pokemon/'
 
 export default function EditScreenInfo({ path }: { path: string }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Pokemon[]>([]);
+  const [test, setTest] = useState<Pokemon[]>([]);
+  const regions: Region[] = Regions;
+
+  console.log(regions);
 
   const getPokemon = async () => {
     try {
@@ -28,52 +35,40 @@ export default function EditScreenInfo({ path }: { path: string }) {
     }
   };
 
+  const getRegionPokemon = async (startId: number, endId: number) => {
+    try {
+      const response = await fetch(baseUrl + '?limit=' + endId + '&offset=' + startId);
+      const json = await response.json();
+      setTest(json.results);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     getPokemon();
   }, []);
 
   return (
-    <View style={{flex: 1, padding: 24}}>
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-        <FlatList
-          data={data}
-          renderItem={({item}) => (
-            <PokemonCard item={item} /> 
-          )}
-        />
-      )}
+    <View  >
+      {regions.map((region, index) => {
+        return (
+            <RegionDisplay key={index} item={region} />
+          )
+        })}   
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  viewPort: {
+    display: 'flex'
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    lineHeight: 24,
+  regionColor: {
+    width: '100%',
     textAlign: 'center',
-  },
-  helpContainer: {
-    marginTop: 15,
-    marginHorizontal: 20,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    textAlign: 'center',
-  },
+    backgroundColor: 'red'
+  }
 });

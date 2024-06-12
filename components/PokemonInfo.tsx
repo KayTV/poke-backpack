@@ -2,7 +2,7 @@ import { StyleSheet, StatusBar, FlatList, View, Text, ActivityIndicator, Image }
 import PokemonCard from "./PokemonCard";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { Pokemon } from "@/constants/pokemon";
+import { Pokemon } from "@/models/pokemon";
 
 const baseUrl: string = 'https://pokeapi.co/api/v2/pokemon/';
 const spriteUrl: string = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
