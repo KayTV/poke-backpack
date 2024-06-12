@@ -13,7 +13,7 @@ const baseUrl: string = 'https://pokeapi.co/api/v2/pokemon/'
 const RegionDisplay = ({ item }: any) => {
   const [isLoading, setLoading] = useState(true);
   const [test, setTest] = useState<Pokemon[]>([]);
-  let buttonPressed = false;
+  const [isButtonPressed, setButtonPressed] = useState(false);
 
   const getRegionPokemon = async (startId: number, endId: number) => {
     try {
@@ -27,12 +27,13 @@ const RegionDisplay = ({ item }: any) => {
     }
   };
 
-  const onPress = () => {
-    buttonPressed = !buttonPressed;
+  const onPress = (arg: any) => {
+    console.log(arg);
     setTest([]);
-    if (buttonPressed) {
+    if (isButtonPressed) {
         getRegionPokemon(item.startId, item.endId);
     }
+    setButtonPressed(!isButtonPressed);
   }
 
   return (
@@ -40,7 +41,7 @@ const RegionDisplay = ({ item }: any) => {
         <Pressable style={{margin: 10}} onPress={onPress}>
             <Text style={styles.regionColor}>{item.name}</Text>
         </Pressable>
-        {buttonPressed ? (
+        {isButtonPressed ? (
             <Text></Text>
         ) : (
             <View>
