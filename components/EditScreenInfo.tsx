@@ -52,12 +52,13 @@ export default function EditScreenInfo({ path }: { path: string }) {
   }, []);
 
   return (
-    <View  >
-      {regions.map((region, index) => {
-        return (
-            <RegionDisplay key={index} item={region} />
-          )
-        })}   
+    <View style={{flex: 1, alignItems: 'stretch'}}>
+            <FlatList
+                data={regions}
+                renderItem={({item}) => (
+                    <RegionDisplay item={item} />
+                )}
+                /> 
     </View>
   );
 }

@@ -32,17 +32,16 @@ const PokemonCard = ({ item }: any) => {
 
 const styles = StyleSheet.create({
   item: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    marginVertical: 8,
-    marginHorizontal: 22,
+    paddingHorizontal: 1,
+    paddingVertical: 1,
+    marginVertical: 4,
+    marginHorizontal: 4,
     borderRadius: 16,
     backgroundColor: '#EAEAEA',
     borderWidth: 2
   },
   title: {
-    fontSize: 28,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
   },
 });
 
