@@ -6,6 +6,7 @@ import { View, Image, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Fla
 import { Pokemon } from "@/models/pokemon";
 import { Link, useNavigation } from "expo-router";
 import PokemonCard from "./PokemonCard";
+import { FontAwesome } from "@expo/vector-icons";
 
 const baseUrl: string = 'https://pokeapi.co/api/v2/pokemon/'
 
@@ -42,11 +43,13 @@ const RegionDisplay = ({ item }: any) => {
         <View style={styles.headerDisplay}>
             <Text style={styles.headerText}>{item.name}</Text>
         </View>
-        <View>
+        <View style={styles.regionZones}>
             <Text>
                 {item.desc}
             </Text>
-            <Button title={title} onPress={onPress}>
+            <Image key={item.id} source={item.image} style={{height: 200, width: 200, alignSelf: "center", margin: 5, borderRadius: 10}}/>
+            
+            <Button color={'#DF8803'} title={title} onPress={onPress}>
             </Button>
         </View>
         {isButtonPressed ? (
@@ -83,11 +86,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30
   },
-  regionColor: {
+  regionZones: {
     textAlign: 'center',
-    backgroundColor: 'red',
     alignItems: 'stretch',
-    fontSize: 30
+    marginBottom: 10
   }
 });
 
