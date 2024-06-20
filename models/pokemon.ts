@@ -58,7 +58,14 @@ export interface PokemonStat {
 }
 
 export interface PokemonType {
+  slot: number;
+  type: Type;
 
+}
+
+export interface Type {
+  name: string;
+  url: string;
 }
 
 export interface Pokedex {

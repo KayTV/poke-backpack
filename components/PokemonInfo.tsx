@@ -35,13 +35,24 @@ const PokemonsInfo = ({ path }: { path: string }) => {
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <>
-          <Text>{data?.name}</Text>
-          <Image source={{uri: imageUrl}}
-               style={{width: 70, height: 70, paddingLeft: 3}} />
-          <Image source={{uri: data?.sprites?.front_shiny}}
-                style={{width: 70, height: 70, paddingLeft: 3}} />
-        </>
+        <View>
+          <Text style={styles.h1}>{data?.name}</Text>
+          <View style={styles.imageView}>
+            <Image source={{uri: imageUrl}}
+               style={{width: 150, height: 150, paddingLeft: 3}} />
+            <Image source={{uri: data?.sprites?.front_shiny}}
+                style={{width: 150, height: 150, paddingLeft: 3}} />
+          </View>
+          <View>
+            <Text>Types:</Text>
+            <FlatList
+                data={data?.types}
+                renderItem={({item}) => (
+                    <Text>{item.type.name}</Text>
+                )}
+                /> 
+          </View>
+        </View>
       )}
     </View>
   )
@@ -49,9 +60,12 @@ const PokemonsInfo = ({ path }: { path: string }) => {
 
 const styles = StyleSheet.create({
   h1: {
-    marginTop: 17,
+
+    marginBottom: 10,
     fontStyle: "normal",
-    fontSize: 32,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 35,
     lineHeight: 47,
   },
   h2: {
@@ -62,6 +76,16 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginBottom: 9,
   },
+  imageView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 160
+  },
+  imageStyle: {
+    width: 70,
+    height: 70
+  }
 });
 
 export default PokemonsInfo;
